@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220712 09:01:38.052" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="D:\RobotFramework\Tests">
+<suite id="s1-s1" name="Apitest" source="D:\RobotFramework\Tests\apitest.robot">
+<test id="s1-s1-t1" name="Play around with Dictionaries concepts" line="11">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>name=Krishna Kamaksh Brahma</arg>
+<arg>course=robot</arg>
+<arg>website=https://udemy.com/course</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220712 09:01:38.161" level="INFO">&amp;{data} = { name=Krishna Kamaksh Brahma | course=robot | website=https://udemy.com/course }</msg>
+<status status="PASS" starttime="20220712 09:01:38.161" endtime="20220712 09:01:38.161"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}[website]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220712 09:01:38.162" level="INFO">https://udemy.com/course</msg>
+<status status="PASS" starttime="20220712 09:01:38.162" endtime="20220712 09:01:38.162"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${url}</var>
+<arg>${data}</arg>
+<arg>website</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20220712 09:01:38.162" level="INFO">${url} = https://udemy.com/course</msg>
+<status status="PASS" starttime="20220712 09:01:38.162" endtime="20220712 09:01:38.162"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{request_body}</var>
+<arg>name=pythonOnlineCourse</arg>
+<arg>isbn=324543</arg>
+<arg>aisle=12345</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220712 09:01:38.163" level="INFO">&amp;{request_body} = { name=pythonOnlineCourse | isbn=324543 | aisle=12345 }</msg>
+<status status="PASS" starttime="20220712 09:01:38.163" endtime="20220712 09:01:38.163"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<arg>${url}/Library/Addbook.php</arg>
+<arg>json=${request_body}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220712 09:01:42.517" level="INFO">POST Request : url=https://udemy.com/course/Library/Addbook.php (redirected) 
+ path_url=/course/Library/Addbook.php 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '66', 'Content-Type': 'application/json'} 
+ body=b'{"name": "pythonOnlineCourse", "isbn": "324543", "aisle": "12345"}' 
+ </msg>
+<msg timestamp="20220712 09:01:42.517" level="INFO">GET Response : url=https://www.udemy.com/course/Library/Addbook.php 
+ status=403, reason=Forbidden 
+ headers={'Date': 'Tue, 12 Jul 2022 03:31:40 GMT', 'Content-Type': 'text/html; charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=15', 'Expires': 'Tue, 12 Jul 2022 03:31:55 GMT', 'X-Frame-Options': 'SAMEORIGIN', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Vary': 'Accept-Encoding', 'X-Content-Type-Options': 'nosniff', 'Set-Cookie': '__cfruid=8d2e22b82bf1daf86cc230e59acabe313cba05c5-1657596700; path=/; domain=.udemy.com; HttpOnly; Secure; SameSite=None', 'Server': 'cloudflare', 'CF-RAY': '7296b514cadd4b17-HYD', 'Content-Encoding': 'gzip'} 
+ body=&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;meta charset='utf-8'&gt;
+&lt;title&gt;Error • Udemy&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Forbidden
+&lt;/body&gt;
+&lt;/html&gt; 
+ </msg>
+<msg timestamp="20220712 09:01:42.518" level="FAIL">Url: https://www.udemy.com/course/Library/Addbook.php Expected status: 403 != 400</msg>
+<status status="FAIL" starttime="20220712 09:01:38.163" endtime="20220712 09:01:42.519"/>
+</kw>
+<tag>API</tag>
+<status status="FAIL" starttime="20220712 09:01:38.160" endtime="20220712 09:01:42.521">Url: https://www.udemy.com/course/Library/Addbook.php Expected status: 403 != 400</status>
+</test>
+<status status="FAIL" starttime="20220712 09:01:38.076" endtime="20220712 09:01:42.523"/>
+</suite>
+<status status="FAIL" starttime="20220712 09:01:38.054" endtime="20220712 09:01:42.525"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">API</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Apitest">Tests.Apitest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

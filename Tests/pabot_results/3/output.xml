@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220709 13:15:45.073" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="D:\RobotFramework\Tests">
+<suite id="s1-s1" name="testDemo4" source="D:\RobotFramework\Tests\testDemo4.robot">
+<test id="s1-s1-t1" name="Validate login with email ID from the hyperlink" line="23">
+<kw name="Open the browser with the Payment URL" library="resource" type="SETUP">
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>executable_path=D:/rbdrivers/chromedriver.exe</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20220709 13:15:45.427" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20220709 13:15:45.426" endtime="20220709 13:15:49.957"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>https://rahulshettyacademy.com/loginpagePractise/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220709 13:15:49.959" level="INFO">Opening url 'https://rahulshettyacademy.com/loginpagePractise/'</msg>
+<status status="PASS" starttime="20220709 13:15:49.958" endtime="20220709 13:15:52.507"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:45.425" endtime="20220709 13:15:52.512"/>
+</kw>
+<kw name="Select the link of Child Window">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>css:.blinkingText</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220709 13:15:52.519" level="INFO">Clicking element 'css:.blinkingText'.</msg>
+<status status="PASS" starttime="20220709 13:15:52.516" endtime="20220709 13:16:18.406"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220709 13:16:23.441" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220709 13:16:18.407" endtime="20220709 13:16:23.442"/>
+</kw>
+<kw name="Demo World" library="Test">
+<msg timestamp="20220709 13:16:23.459" level="INFO">hello word 11</msg>
+<status status="PASS" starttime="20220709 13:16:23.444" endtime="20220709 13:16:23.460"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220709 13:16:23.461" endtime="20220709 13:16:23.552"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:52.513" endtime="20220709 13:16:23.553"/>
+</kw>
+<kw name="Verify if user is swtiched to child window">
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>xpath=//h1[normalize-space()='Documents request']</arg>
+<arg>DOCUMENTS REQUEST</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220709 13:16:23.558" level="INFO">Verifying element 'xpath=//h1[normalize-space()='Documents request']' contains exact text 'DOCUMENTS REQUEST'.</msg>
+<status status="PASS" starttime="20220709 13:16:23.557" endtime="20220709 13:16:49.414"/>
+</kw>
+<status status="PASS" starttime="20220709 13:16:23.555" endtime="20220709 13:16:49.415"/>
+</kw>
+<kw name="Grab the Email ID from the child window and grab the email ID">
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${text}</var>
+<arg>css:.red</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220709 13:16:49.581" level="INFO">${text} = Please email us at mentor@rahulshettyacademy.com with below template to receive response</msg>
+<status status="PASS" starttime="20220709 13:16:49.418" endtime="20220709 13:16:49.581"/>
+</kw>
+<kw name="Split String" library="String">
+<var>@{words}</var>
+<arg>${text}</arg>
+<arg>at</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20220709 13:16:49.583" level="INFO">@{words} = [ Please email us  |  mentor@rahulshettyacademy.com with below templ | e to receive response ]</msg>
+<status status="PASS" starttime="20220709 13:16:49.581" endtime="20220709 13:16:49.583"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${text_split}</var>
+<arg>${words}</arg>
+<arg>1</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20220709 13:16:49.585" level="INFO">${text_split} =  mentor@rahulshettyacademy.com with below templ</msg>
+<status status="PASS" starttime="20220709 13:16:49.584" endtime="20220709 13:16:49.585"/>
+</kw>
+<kw name="Split String" library="String">
+<var>@{words_email}</var>
+<arg>${text_split}</arg>
+<arg>with</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20220709 13:16:49.589" level="INFO">@{words_email} = [  mentor@rahulshettyacademy.com  |  below templ ]</msg>
+<status status="PASS" starttime="20220709 13:16:49.586" endtime="20220709 13:16:49.589"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${email_id}</var>
+<arg>${words_email}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20220709 13:16:49.592" level="INFO">${email_id} =  mentor@rahulshettyacademy.com </msg>
+<status status="PASS" starttime="20220709 13:16:49.590" endtime="20220709 13:16:49.592"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${email_id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20220709 13:16:49.595" level="INFO">${email_id} =  mentor@rahulshettyacademy.com </msg>
+<status status="PASS" starttime="20220709 13:16:49.593" endtime="20220709 13:16:49.595"/>
+</kw>
+<status status="PASS" starttime="20220709 13:16:49.416" endtime="20220709 13:16:49.596"/>
+</kw>
+<kw name="Fill the form on Parent window">
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>MAIN</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220709 13:16:49.598" endtime="20220709 13:16:49.843"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220709 13:16:54.851" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20220709 13:16:49.844" endtime="20220709 13:16:54.852"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:username</arg>
+<arg>${email_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220709 13:16:54.863" level="INFO">Typing text ' mentor@rahulshettyacademy.com ' into text field 'id:username'.</msg>
+<status status="PASS" starttime="20220709 13:16:54.855" endtime="20220709 13:16:57.114"/>
+</kw>
+<status status="PASS" starttime="20220709 13:16:49.596" endtime="20220709 13:16:57.114"/>
+</kw>
+<kw name="Close Browser Session" library="resource" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220709 13:16:57.117" endtime="20220709 13:17:08.084"/>
+</kw>
+<status status="PASS" starttime="20220709 13:16:57.116" endtime="20220709 13:17:08.085"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:45.424" endtime="20220709 13:17:08.085"/>
+</test>
+<doc>To Validate the login form</doc>
+<status status="PASS" starttime="20220709 13:15:45.133" endtime="20220709 13:17:08.087"/>
+</suite>
+<status status="PASS" starttime="20220709 13:15:45.088" endtime="20220709 13:17:08.095"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="testDemo4">Tests.testDemo4</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

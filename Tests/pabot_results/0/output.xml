@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220709 13:15:45.065" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="D:\RobotFramework\Tests">
+<suite id="s1-s1" name="testDemo1" source="D:\RobotFramework\Tests\testDemo1.robot">
+<test id="s1-s1-t1" name="Validate successful login into the application" line="13">
+<kw name="Open the browser with the Payment URL">
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>executable_path=D:/rbdrivers/chromedriver.exe</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20220709 13:15:45.391" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20220709 13:15:45.390" endtime="20220709 13:15:47.443"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>https://rahulshettyacademy.com/loginpagePractise/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220709 13:15:47.444" level="INFO">Opening url 'https://rahulshettyacademy.com/loginpagePractise/'</msg>
+<status status="PASS" starttime="20220709 13:15:47.444" endtime="20220709 13:15:51.341"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:45.389" endtime="20220709 13:15:51.344"/>
+</kw>
+<kw name="Fill the login form">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:username</arg>
+<arg>rahulshettyacademy</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220709 13:15:51.354" level="INFO">Typing text 'rahulshettyacademy' into text field 'id:username'.</msg>
+<status status="PASS" starttime="20220709 13:15:51.351" endtime="20220709 13:15:57.417"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>1234568dd</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220709 13:15:57.420" level="INFO">Typing text '1234568dd' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20220709 13:15:57.418" endtime="20220709 13:15:58.897"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>signInBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220709 13:15:58.899" level="INFO">Clicking button 'signInBtn'.</msg>
+<status status="PASS" starttime="20220709 13:15:58.898" endtime="20220709 13:16:02.089"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:51.347" endtime="20220709 13:16:02.090"/>
+</kw>
+<kw name="Wait for the error message is displayed">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${error_message_login}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220709 13:16:02.092" endtime="20220709 13:16:04.908"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${result}</var>
+<arg>${error_message_login}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220709 13:16:05.197" level="INFO">${result} = Incorrect username/password.</msg>
+<status status="PASS" starttime="20220709 13:16:04.909" endtime="20220709 13:16:05.199"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${result}</arg>
+<arg>${message_login}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220709 13:16:05.199" endtime="20220709 13:16:05.202"/>
+</kw>
+<status status="PASS" starttime="20220709 13:16:02.090" endtime="20220709 13:16:05.204"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220709 13:16:05.208" endtime="20220709 13:16:25.143"/>
+</kw>
+<status status="PASS" starttime="20220709 13:15:45.388" endtime="20220709 13:16:25.144"/>
+</test>
+<doc>To Validate the login form</doc>
+<status status="PASS" starttime="20220709 13:15:45.120" endtime="20220709 13:16:25.147"/>
+</suite>
+<status status="PASS" starttime="20220709 13:15:45.077" endtime="20220709 13:16:25.154"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="testDemo1">Tests.testDemo1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
