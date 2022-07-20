@@ -54,6 +54,7 @@ Verify the card details present in the shopping page
     END
     Log     ${actual_list}
     list should contain sub list        ${expected_list}       ${actual_list}
+    Log     String matching
 
 Click on some card details on Shopping Page
      [arguments]     ${productList}
