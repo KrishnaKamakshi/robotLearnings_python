@@ -23,3 +23,16 @@ class Test:
             if listElement.text in productList:
                 self.selLib.click_button("xpath:(//*[@class='card-footer'])[" + str(i) + "]/button")
             i = i + 1
+
+    @keyword
+    def scroll_the_page_until_all_elements_are_loaded(self):
+        last_h = self.selLib.execute_javascript("return document.body.scrollHeight")
+        print(last_h)
+        while True:
+            self.selLib.execute_javascript("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(5)
+            new_h = self.selLib.execute_javascript("return document.body.scrollHeight")
+            print(new_h)
+            if new_h == last_h:
+                break
+            last_h = new_h

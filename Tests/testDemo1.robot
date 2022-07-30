@@ -24,7 +24,6 @@ Fill the login form
     Input Text      id:username     rahulshettyacademy
     Input Text      id:password     1234568dd
     click button    signInBtn
-
 Wait for the error message is displayed
     Wait Until Element Is Visible      ${error_message_login}
     ${result}=  Get Text    ${error_message_login}

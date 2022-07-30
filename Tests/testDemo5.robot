@@ -61,6 +61,7 @@ Verify the card details present in the shopping page
 
 Click on some card details on Shopping Page
      [arguments]     ${productList}
+     scroll the page until all elements are loaded
      items_to_be_added      ${productList}
 
 Do fill the form with user selection type as "User" and click on the URl provided on the Page
