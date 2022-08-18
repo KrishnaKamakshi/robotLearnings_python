@@ -1,83 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.8.0 on win32)" generated="20220712 09:01:38.052" rpa="false" schemaversion="3">
-<suite id="s1" name="Tests" source="D:\RobotFramework\Tests">
-<suite id="s1-s1" name="Apitest" source="D:\RobotFramework\Tests\apitest.robot">
-<test id="s1-s1-t1" name="Play around with Dictionaries concepts" line="11">
+<robot generator="Robot 5.0.1 (Python 3.10.5 on win32)" generated="20220818 13:47:47.557" rpa="false" schemaversion="3">
+<suite id="s1" name="testDemo8" source="D:\RobotFramework\Tests\testDemo8.robot">
+<test id="s1-t1" name="Download PDF" line="7">
+<kw name="Get Time" library="BuiltIn">
+<var>${now}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<msg timestamp="20220818 13:47:47.752" level="INFO">${now} = 1660810667</msg>
+<status status="PASS" starttime="20220818 13:47:47.752" endtime="20220818 13:47:47.752"/>
+</kw>
+<kw name="Join Path" library="OperatingSystem">
+<var>${download directory}</var>
+<arg>${OUTPUT DIR}</arg>
+<arg>downloads_${now}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220818 13:47:47.753" level="INFO">${download directory} = D:\RobotFramework\Tests\downloads_1660810667</msg>
+<status status="PASS" starttime="20220818 13:47:47.753" endtime="20220818 13:47:47.753"/>
+</kw>
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${download directory}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20220818 13:47:47.754" level="INFO" html="true">Created directory '&lt;a href="file://D:\RobotFramework\Tests\downloads_1660810667"&gt;D:\RobotFramework\Tests\downloads_1660810667&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20220818 13:47:47.753" endtime="20220818 13:47:47.754"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220818 13:47:47.754" level="INFO">${chrome options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000209ABBE2CB0&gt;</msg>
+<status status="PASS" starttime="20220818 13:47:47.754" endtime="20220818 13:47:47.754"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>${disabled}</var>
+<arg>Chrome PDF Viewer</arg>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20220818 13:47:47.755" level="INFO">${disabled} = ['Chrome PDF Viewer']</msg>
+<status status="PASS" starttime="20220818 13:47:47.754" endtime="20220818 13:47:47.755"/>
+</kw>
 <kw name="Create Dictionary" library="BuiltIn">
-<var>&amp;{data}</var>
-<arg>name=Krishna Kamaksh Brahma</arg>
-<arg>course=robot</arg>
-<arg>website=https://udemy.com/course</arg>
+<var>${prefs}</var>
+<arg>download.default_directory=${download directory}</arg>
+<arg>plugins.plugins_disabled=${disabled}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220712 09:01:38.161" level="INFO">&amp;{data} = { name=Krishna Kamaksh Brahma | course=robot | website=https://udemy.com/course }</msg>
-<status status="PASS" starttime="20220712 09:01:38.161" endtime="20220712 09:01:38.161"/>
+<msg timestamp="20220818 13:47:47.755" level="INFO">${prefs} = {'download.default_directory': 'D:\\RobotFramework\\Tests\\downloads_1660810667', 'plugins.plugins_disabled': ['Chrome PDF Viewer']}</msg>
+<status status="PASS" starttime="20220818 13:47:47.755" endtime="20220818 13:47:47.755"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20220818 13:47:47.755" endtime="20220818 13:47:47.756"/>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<arg>Chrome</arg>
+<arg>executable_path=D:/rbdrivers/chromedriver.exe</arg>
+<arg>chrome_options=${chrome options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<msg timestamp="20220818 13:47:47.756" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20220818 13:47:47.756" endtime="20220818 13:47:49.026"/>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>https://the-internet.herokuapp.com/download</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220818 13:47:49.027" level="INFO">Opening url 'https://the-internet.herokuapp.com/download'</msg>
+<status status="PASS" starttime="20220818 13:47:49.026" endtime="20220818 13:47:52.330"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>xpath://a[normalize-space()='Sonali_Test_19_CreateCombinations.csv']</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20220818 13:47:52.331" level="INFO">Clicking link 'xpath://a[normalize-space()='Sonali_Test_19_CreateCombinations.csv']'.</msg>
+<status status="PASS" starttime="20220818 13:47:52.331" endtime="20220818 13:47:52.661"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<var>${file}</var>
+<arg>1 min</arg>
+<arg>2 sec</arg>
+<arg>Download should be done</arg>
+<arg>${download directory}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Download should be done">
+<arg>${download directory}</arg>
+<doc>Verifies that the directory has only one folder and it is not a temp file.</doc>
+<kw name="List Files In Directory" library="OperatingSystem">
+<var>${files}</var>
+<arg>${directory}</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<msg timestamp="20220818 13:47:52.663" level="INFO" html="true">Listing contents of directory '&lt;a href="file://D:\RobotFramework\Tests\downloads_1660810667"&gt;D:\RobotFramework\Tests\downloads_1660810667&lt;/a&gt;'.</msg>
+<msg timestamp="20220818 13:47:52.664" level="INFO">1 file:
+3319cdea-90e1-4d87-b6db-e6b9d582eae3.tmp</msg>
+<msg timestamp="20220818 13:47:52.664" level="INFO">${files} = ['3319cdea-90e1-4d87-b6db-e6b9d582eae3.tmp']</msg>
+<status status="PASS" starttime="20220818 13:47:52.663" endtime="20220818 13:47:52.664"/>
+</kw>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${files}</arg>
+<arg>1</arg>
+<arg>Should be only one file in the download folder</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<msg timestamp="20220818 13:47:52.665" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20220818 13:47:52.664" endtime="20220818 13:47:52.665"/>
+</kw>
+<kw name="Should Not Match Regexp" library="BuiltIn">
+<arg>${files[0]}</arg>
+<arg>(?i).*\\.tmp</arg>
+<arg>Chrome is still downloading a file</arg>
+<doc>Fails if ``string`` matches ``pattern`` as a regular expression.</doc>
+<msg timestamp="20220818 13:47:52.667" level="FAIL">Chrome is still downloading a file: '3319cdea-90e1-4d87-b6db-e6b9d582eae3.tmp' matches '(?i).*\.tmp'</msg>
+<status status="FAIL" starttime="20220818 13:47:52.665" endtime="20220818 13:47:52.667"/>
+</kw>
+<kw name="Join Path" library="OperatingSystem">
+<var>${file}</var>
+<arg>${directory}</arg>
+<arg>${files[0]}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<status status="NOT RUN" starttime="20220818 13:47:52.667" endtime="20220818 13:47:52.667"/>
 </kw>
 <kw name="Log" library="BuiltIn">
-<arg>${data}[website]</arg>
+<arg>File was successfully downloaded to ${file}</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20220712 09:01:38.162" level="INFO">https://udemy.com/course</msg>
-<status status="PASS" starttime="20220712 09:01:38.162" endtime="20220712 09:01:38.162"/>
+<status status="NOT RUN" starttime="20220818 13:47:52.668" endtime="20220818 13:47:52.668"/>
 </kw>
-<kw name="Get From Dictionary" library="Collections">
-<var>${url}</var>
-<arg>${data}</arg>
-<arg>website</arg>
-<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20220712 09:01:38.162" level="INFO">${url} = https://udemy.com/course</msg>
-<status status="PASS" starttime="20220712 09:01:38.162" endtime="20220712 09:01:38.162"/>
+<status status="FAIL" starttime="20220818 13:47:52.662" endtime="20220818 13:47:52.668"/>
 </kw>
-<kw name="Create Dictionary" library="BuiltIn">
-<var>&amp;{request_body}</var>
-<arg>name=pythonOnlineCourse</arg>
-<arg>isbn=324543</arg>
-<arg>aisle=12345</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220712 09:01:38.163" level="INFO">&amp;{request_body} = { name=pythonOnlineCourse | isbn=324543 | aisle=12345 }</msg>
-<status status="PASS" starttime="20220712 09:01:38.163" endtime="20220712 09:01:38.163"/>
+<kw name="Download should be done">
+<arg>${download directory}</arg>
+<doc>Verifies that the directory has only one folder and it is not a temp file.</doc>
+<kw name="List Files In Directory" library="OperatingSystem">
+<var>${files}</var>
+<arg>${directory}</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<msg timestamp="20220818 13:47:54.676" level="INFO" html="true">Listing contents of directory '&lt;a href="file://D:\RobotFramework\Tests\downloads_1660810667"&gt;D:\RobotFramework\Tests\downloads_1660810667&lt;/a&gt;'.</msg>
+<msg timestamp="20220818 13:47:54.676" level="INFO">1 file:
+Sonali_Test_19_CreateCombinations.csv</msg>
+<msg timestamp="20220818 13:47:54.677" level="INFO">${files} = ['Sonali_Test_19_CreateCombinations.csv']</msg>
+<status status="PASS" starttime="20220818 13:47:54.676" endtime="20220818 13:47:54.677"/>
 </kw>
-<kw name="POST" library="RequestsLibrary">
-<arg>${url}/Library/Addbook.php</arg>
-<arg>json=${request_body}</arg>
-<arg>expected_status=400</arg>
-<doc>Sends a POST request.</doc>
-<msg timestamp="20220712 09:01:42.517" level="INFO">POST Request : url=https://udemy.com/course/Library/Addbook.php (redirected) 
- path_url=/course/Library/Addbook.php 
- headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '66', 'Content-Type': 'application/json'} 
- body=b'{"name": "pythonOnlineCourse", "isbn": "324543", "aisle": "12345"}' 
- </msg>
-<msg timestamp="20220712 09:01:42.517" level="INFO">GET Response : url=https://www.udemy.com/course/Library/Addbook.php 
- status=403, reason=Forbidden 
- headers={'Date': 'Tue, 12 Jul 2022 03:31:40 GMT', 'Content-Type': 'text/html; charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=15', 'Expires': 'Tue, 12 Jul 2022 03:31:55 GMT', 'X-Frame-Options': 'SAMEORIGIN', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Vary': 'Accept-Encoding', 'X-Content-Type-Options': 'nosniff', 'Set-Cookie': '__cfruid=8d2e22b82bf1daf86cc230e59acabe313cba05c5-1657596700; path=/; domain=.udemy.com; HttpOnly; Secure; SameSite=None', 'Server': 'cloudflare', 'CF-RAY': '7296b514cadd4b17-HYD', 'Content-Encoding': 'gzip'} 
- body=&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;&lt;meta charset='utf-8'&gt;
-&lt;title&gt;Error • Udemy&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-Forbidden
-&lt;/body&gt;
-&lt;/html&gt; 
- </msg>
-<msg timestamp="20220712 09:01:42.518" level="FAIL">Url: https://www.udemy.com/course/Library/Addbook.php Expected status: 403 != 400</msg>
-<status status="FAIL" starttime="20220712 09:01:38.163" endtime="20220712 09:01:42.519"/>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${files}</arg>
+<arg>1</arg>
+<arg>Should be only one file in the download folder</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<msg timestamp="20220818 13:47:54.677" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20220818 13:47:54.677" endtime="20220818 13:47:54.677"/>
 </kw>
-<tag>API</tag>
-<status status="FAIL" starttime="20220712 09:01:38.160" endtime="20220712 09:01:42.521">Url: https://www.udemy.com/course/Library/Addbook.php Expected status: 403 != 400</status>
+<kw name="Should Not Match Regexp" library="BuiltIn">
+<arg>${files[0]}</arg>
+<arg>(?i).*\\.tmp</arg>
+<arg>Chrome is still downloading a file</arg>
+<doc>Fails if ``string`` matches ``pattern`` as a regular expression.</doc>
+<status status="PASS" starttime="20220818 13:47:54.677" endtime="20220818 13:47:54.677"/>
+</kw>
+<kw name="Join Path" library="OperatingSystem">
+<var>${file}</var>
+<arg>${directory}</arg>
+<arg>${files[0]}</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<msg timestamp="20220818 13:47:54.679" level="INFO">${file} = D:\RobotFramework\Tests\downloads_1660810667\Sonali_Test_19_CreateCombinations.csv</msg>
+<status status="PASS" starttime="20220818 13:47:54.678" endtime="20220818 13:47:54.679"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>File was successfully downloaded to ${file}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220818 13:47:54.679" level="INFO">File was successfully downloaded to D:\RobotFramework\Tests\downloads_1660810667\Sonali_Test_19_CreateCombinations.csv</msg>
+<status status="PASS" starttime="20220818 13:47:54.679" endtime="20220818 13:47:54.679"/>
+</kw>
+<status status="PASS" starttime="20220818 13:47:54.676" endtime="20220818 13:47:54.679"/>
+</kw>
+<msg timestamp="20220818 13:47:54.679" level="INFO">${file} = D:\RobotFramework\Tests\downloads_1660810667\Sonali_Test_19_CreateCombinations.csv</msg>
+<status status="PASS" starttime="20220818 13:47:52.661" endtime="20220818 13:47:54.679"/>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220818 13:47:54.679" endtime="20220818 13:47:56.830"/>
+</kw>
+<status status="PASS" starttime="20220818 13:47:47.751" endtime="20220818 13:47:56.831"/>
 </test>
-<status status="FAIL" starttime="20220712 09:01:38.076" endtime="20220712 09:01:42.523"/>
-</suite>
-<status status="FAIL" starttime="20220712 09:01:38.054" endtime="20220712 09:01:42.525"/>
+<status status="PASS" starttime="20220818 13:47:47.559" endtime="20220818 13:47:56.833"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">API</stat>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="0" fail="1" skip="0" id="s1-s1" name="Apitest">Tests.Apitest</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="testDemo8">testDemo8</stat>
 </suite>
 </statistics>
 <errors>

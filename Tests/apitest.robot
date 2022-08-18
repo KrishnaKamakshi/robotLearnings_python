@@ -14,4 +14,4 @@ Play around with Dictionaries concepts
     log     ${data}[website]
     ${url}=     get from dictionary     ${data}     website
     &{request_body}  create dictionary       name=pythonOnlineCourse     isbn=324543        aisle=12345
-    POST        ${url}/Library/Addbook.php     json=${request_body}        expected_status=400
+    POST        ${url}/Library/Addbook.php     json=${request_body}        expected_status=403
